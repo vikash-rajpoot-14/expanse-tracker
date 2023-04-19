@@ -7,6 +7,7 @@ const sequelize = require("./../util/database");
 let defaultClient = SibApiV3Sdk.ApiClient.instance;
 
 let apiKey = defaultClient.authentications["api-key"];
+// console.log(process.env.SIB_API_KEY);
 apiKey.apiKey = process.env.SIB_API_KEY;
 
 let apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
@@ -30,14 +31,12 @@ exports.ForgetPassword = async (req, res) => {
       },
       { transaction: t }
     );
-    // console.log("object");
     const uuid = frequeset.id;
     const recievers = [
       {
         email: email,
       },
     ];
-
     const data = await apiInstance.sendTransacEmail({
       sender,
       to: recievers,
@@ -57,7 +56,7 @@ exports.ForgetPassword = async (req, res) => {
       data: "message has been sent",
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     await this.rollback();
     return res.status(500).json({
       status: "fail",
@@ -86,14 +85,13 @@ exports.ResetPassword = async (req, res) => {
       );
       await t.commit();
       return res.redirect(
-        "http://127.0.0.1:5500/frontend/Forgotpassword/passwordform.html?" +
-          request.userId
+        "http://127.0.0.1:3000/Forgotpassword/passwordform.html"
       );
     } else {
       throw new Error("cannot use same link twice");
     }
   } catch (error) {
-    await this.rollback();
+    await t.rollback();
     return res.status(500).json({
       status: "error",
       data: error.message,
@@ -119,7 +117,7 @@ exports.setforgotpassword = async (req, res) => {
     );
     if (user) {
       await t.commit();
-      return res.redirect("http://127.0.0.1:5500/frontend/Login/login.html");
+      return res.redirect("http://127.0.0.1:3000/Login/login.html");
     }
     await t.commit();
     return res.status(404).json({

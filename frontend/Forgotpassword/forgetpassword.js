@@ -1,3 +1,21 @@
+const token = localStorage.getItem("token");
+
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
+}
+
 async function showForgot(e) {
   try {
     e.preventDefault();
@@ -30,7 +48,9 @@ async function showForgot(e) {
 async function showPassword(e) {
   e.preventDefault();
   try {
-    const id = e.target.baseURI.split("?")[1];
+    const decode = parseJwt(token);
+    console.log(decode);
+    const id = decode.id;
     password = e.target.password.value;
     cpassword = e.target.cpassword.value;
     console.log(id);
@@ -42,13 +62,15 @@ async function showPassword(e) {
         `http://localhost:3000/user/setforgotpassword/${id}`,
         obj
       );
-      e.target.password.value = "**************";
-      e.target.cpassword.value = "*************";
-      document.getElementById("error").innerHTML =
-        "Your password has been updated successfully !";
-      setTimeout(() => {
-        window.location.href = "http://127.0.0.1:3000/Login/login.html";
-      }, 1000);
+      if (user) {
+        e.target.password.value = "**************";
+        e.target.cpassword.value = "*************";
+        document.getElementById("error").innerHTML =
+          "Your password has been updated successfully !";
+        setTimeout(() => {
+          window.location.href = "http://127.0.0.1:3000/Login/login.html";
+        }, 1000);
+      }
     } else {
       document.getElementById("error").innerHTML =
         "Password and confirm password should be same !";
