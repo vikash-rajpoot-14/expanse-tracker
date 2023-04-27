@@ -11,7 +11,7 @@ dotenv.config({ path: `${__dirname}/config.env` });
 
 //database
 const sequelize = require("./util/database");
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
 //routes
 const UserRoutes = require("./routes/user");
 const ExpenseRoutes = require("./routes/expense");
