@@ -16,8 +16,7 @@ async function showHandler(e) {
       },
     });
     if (user.status === 201) {
-      window.location.href =
-        "http://http://52.87.171.143/:3000/Login/login.html";
+      window.location.href = "http://52.87.171.143:3000/Login/login.html";
     }
   } catch (e) {
     // console.log(e);
