@@ -23,7 +23,7 @@ async function showForgot(e) {
       email: e.target.email.value,
     };
     const user = await axios.post(
-      "http://localhost:3000/user/forgotpassword",
+      "http://52.87.171.143:3000/user/forgotpassword",
       obj
     );
     console.log(user);
@@ -59,7 +59,7 @@ async function showPassword(e) {
         password: password,
       };
       const user = await axios.post(
-        `http://localhost:3000/user/setforgotpassword/${id}`,
+        `http://52.87.171.143:3000/user/setforgotpassword/${id}`,
         obj
       );
       if (user) {

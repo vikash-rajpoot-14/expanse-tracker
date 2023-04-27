@@ -43,7 +43,7 @@ exports.ForgetPassword = async (req, res) => {
       subject: "email for forget password",
       htmlContent: `<p>this link is valid for single use only !<p><a href={{params.link}}{{params.uuid}} >{{params.link}}{{params.uuid}} !</a>`,
       params: {
-        link: "http://localhost:3000/user/forgotpassword/",
+        link: "http://52.87.171.143:3000/user/forgotpassword/",
         uuid: uuid,
       },
     });

@@ -67,7 +67,7 @@ sequelize
   .sync()
   .then((result) => {
     app.listen(PORT, () => {
-      console.log(`listening on http://localhost:${PORT}`);
+      console.log(`listening on http://52.87.171.143:${PORT}`);
     });
   })
   .catch((err) => {

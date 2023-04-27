@@ -7,7 +7,7 @@ async function showHandler(e) {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    const user = await axios.post("http://localhost:3000/user/login", obj);
+    const user = await axios.post("http://52.87.171.143:3000/user/login", obj);
     if (user.status === 200) {
       error.innerHTML = "login successful";
       localStorage.setItem("token", JSON.stringify(user.data.token));
