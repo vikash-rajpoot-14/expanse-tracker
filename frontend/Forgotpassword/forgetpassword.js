@@ -68,7 +68,7 @@ async function showPassword(e) {
         document.getElementById("error").innerHTML =
           "Your password has been updated successfully !";
         setTimeout(() => {
-          window.location.href = "http://127.0.0.1:3000/Login/login.html";
+          window.location.href = "http://52.87.171.143:3000/Login/login.html";
         }, 1000);
       }
     } else {

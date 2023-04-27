@@ -85,7 +85,7 @@ exports.ResetPassword = async (req, res) => {
       );
       await t.commit();
       return res.redirect(
-        "http://127.0.0.1:3000/Forgotpassword/passwordform.html"
+        "http://52.87.171.143:3000/Forgotpassword/passwordform.html"
       );
     } else {
       throw new Error("cannot use same link twice");
@@ -117,7 +117,7 @@ exports.setforgotpassword = async (req, res) => {
     );
     if (user) {
       await t.commit();
-      return res.redirect("http://127.0.0.1:3000/Login/login.html");
+      return res.redirect("http://52.87.171.143:3000/Login/login.html");
     }
     await t.commit();
     return res.status(404).json({
