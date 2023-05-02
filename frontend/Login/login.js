@@ -7,11 +7,11 @@ async function showHandler(e) {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    const user = await axios.post("http://54.235.31.212:3000/user/login", obj);
+    const user = await axios.post("http://3.216.155.206:3000/user/login", obj);
     if (user.status === 200) {
       error.innerHTML = "login successful";
       localStorage.setItem("token", JSON.stringify(user.data.token));
-      window.location.href = "http://54.235.31.212:3000/expense/index.html";
+      window.location.href = "http://3.216.155.206:3000/expense/index.html";
     }
   } catch (e) {
     // console.log(e);

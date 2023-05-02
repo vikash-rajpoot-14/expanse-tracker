@@ -11,7 +11,7 @@ async function showHandler(e) {
     };
 
     const user = await axios.post(
-      "http://54.235.31.212:3000/user/signup",
+      "http://3.216.155.206:3000/user/signup",
       obj,
       {
         headers: {
@@ -20,7 +20,7 @@ async function showHandler(e) {
       }
     );
     if (user.status === 201) {
-      window.location.href = "http://54.235.31.212:3000/Login/login.html";
+      window.location.href = "http://3.216.155.206:3000/Login/login.html";
     }
   } catch (e) {
     // console.log(e);
