@@ -23,7 +23,7 @@ async function showForgot(e) {
       email: e.target.email.value,
     };
     const user = await axios.post(
-      "http://3.216.155.206:3000/user/forgotpassword",
+      "http://oneinfinity.tk/user/forgotpassword",
       obj
     );
     console.log(user);
@@ -59,7 +59,7 @@ async function showPassword(e) {
         password: password,
       };
       const user = await axios.post(
-        `http://3.216.155.206:3000/user/setforgotpassword/${id}`,
+        `http://oneinfinity.tk/user/setforgotpassword/${id}`,
         obj
       );
       if (user) {
@@ -68,7 +68,7 @@ async function showPassword(e) {
         document.getElementById("error").innerHTML =
           "Your password has been updated successfully !";
         setTimeout(() => {
-          window.location.href = "http://3.216.155.206:3000/Login/login.html";
+          window.location.href = "http://oneinfinity.tk/Login/login.html";
         }, 1000);
       }
     } else {
