@@ -1,6 +1,7 @@
 body {
   align-items: center;
   justify-content: center;
+  margin: 0px;
 }
 
 .main {
@@ -11,6 +12,9 @@ body {
 
 .container {
   min-height: 54vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 0px 100px;
 }
 
 .form {
@@ -22,9 +26,9 @@ body {
     rgb(231, 12, 195),
     rgb(216, 51, 51)
   );
-  position: absolute;
+  position: relative;
   top: 6%;
-  left: 10%;
+  left: 15%;
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: 3px 3px;
@@ -33,16 +37,6 @@ body {
 }
 .form div {
   margin: 4px 0px;
-}
-#rzp-button1 {
-  background-color: rgb(67, 67, 68);
-  position: absolute;
-  top: 47%;
-  left: 21%;
-  margin-top: 2px;
-  cursor: pointer;
-  box-shadow: black;
-  color: white;
 }
 
 .flexchild {
@@ -79,17 +73,13 @@ input[type="text"] {
   border-radius: 8px;
   cursor: pointer;
 }
-.side3 {
-  display: flex;
-  flex-direction: column;
-}
-
 .details {
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  width: 65vw;
+  height: fit-content;
+  width: 50vw;
   text-align: center;
+  margin: 10px 0px;
 }
 
 li {
@@ -100,8 +90,6 @@ li {
 }
 ul {
   list-style-type: decimal;
-  position: absolute;
-  left: 28%;
 }
 .btn-delete {
   background-color: rgb(225 3 3);
@@ -167,4 +155,55 @@ h3 {
 }
 .side4 {
   display: flex;
+}
+.side3 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.head {
+  padding: 4px;
+  text-align: center;
+  background-image: linear-gradient(
+    305deg,
+    rgb(231, 12, 195),
+    rgb(216, 51, 51)
+  );
+}
+.side2 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+}
+#rzp-button1 {
+  background-color: rgb(67, 67, 68);
+  margin-top: 2px;
+  cursor: pointer;
+  box-shadow: black;
+  color: white;
+  text-align: center;
+}
+
+.premium {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: 8%;
+  /* left: 4%; */
+}
+.premium > * {
+  margin: 1px;
+  text-align: center;
+}
+
+#lead {
+  display: flex;
+  margin: 5px 0px 0px 0px;
+}
+#file-items > table {
+  position: relative;
+  right: 7%;
 }

@@ -9,12 +9,15 @@
   </head>
 
   <body>
+    <div class="head">
+      <h2>Expense Tracker App</h2>
+    </div>
     <div class="side4">
       <div class="side3">
         <div class="container">
           <form onsubmit="showHandler(event)" class="form">
             <div class="flexchild">
-              <h1 style="margin: 0px">Expense App</h1>
+              <h1 style="margin: 0px">Add Expense</h1>
             </div>
             <div id="error"></div>
             <div>
@@ -43,11 +46,20 @@
               <button type="submit" id="submit">submit</button>
             </div>
           </form>
-          <button id="rzp-button1">buy premium</button>
+          <div class="premium">
+            <p>Click here to get premium membership ?</p>
+            <button id="rzp-button1">buy premium</button>
+          </div>
         </div>
         <div class="details">
           <div class="side1">
+            <div id="lead">
+              <button id="leader-btn">show leaderboard</button>
+              <button id="download">Download file</button>
+            </div>
             <h2>Expense Details</h2>
+          </div>
+          <div>
             <label for="pages">Choose a row per page:</label>
             <select name="pages" id="pages">
               <option value="2">2</option>
@@ -55,23 +67,21 @@
               <option value="10">10</option>
               <option value="20">20</option>
             </select>
+          </div>
+          <div>
             <ul id="list"></ul>
           </div>
           <div id="pagination"></div>
-          <div style="display: flex">
-            <button id="leader-btn" style="margin-bottom: 2px">
-              show leaderboard
-            </button>
-            <!-- </div>
-        <div> -->
-            <button id="download">Download file</button>
-          </div>
         </div>
       </div>
       <div class="side2">
         <div id="leaderboard">
           <h2>LeaderBoard</h2>
+        </div>
+        <div>
           <ul id="listboard"></ul>
+        </div>
+        <div class="downloadFlies">
           <ul id="file-items"></ul>
         </div>
       </div>

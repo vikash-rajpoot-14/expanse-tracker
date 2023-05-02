@@ -10,17 +10,13 @@ async function showHandler(e) {
       password: e.target.password.value,
     };
 
-    const user = await axios.post(
-      "http://3.216.155.206:3000/user/signup",
-      obj,
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
+    const user = await axios.post("http://localhost:3000/user/signup", obj, {
+      headers: {
+        "content-type": "application/json",
+      },
+    });
     if (user.status === 201) {
-      window.location.href = "http://3.216.155.206:3000/Login/login.html";
+      window.location.href = "http://localhost:3000/Login/login.html";
     }
   } catch (e) {
     // console.log(e);

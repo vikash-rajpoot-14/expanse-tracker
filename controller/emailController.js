@@ -43,7 +43,7 @@ exports.ForgetPassword = async (req, res) => {
       subject: "email for forget password",
       htmlContent: `<p>this link is valid for single use only !<p><a href={{params.link}}{{params.uuid}} >{{params.link}}{{params.uuid}} !</a>`,
       params: {
-        link: "http://3.216.155.206:3000/user/forgotpassword/",
+        link: "http://localhost:3000/user/forgotpassword/",
         uuid: uuid,
       },
     });
@@ -85,7 +85,7 @@ exports.ResetPassword = async (req, res) => {
       );
       await t.commit();
       return res.redirect(
-        "http://3.216.155.206:3000/Forgotpassword/passwordform.html"
+        "http://localhost:3000/Forgotpassword/passwordform.html"
       );
     } else {
       throw new Error("cannot use same link twice");
@@ -117,7 +117,7 @@ exports.setforgotpassword = async (req, res) => {
     );
     if (user) {
       await t.commit();
-      return res.redirect("http://3.216.155.206:3000/Login/login.html");
+      return res.redirect("http://localhost:3000/Login/login.html");
     }
     await t.commit();
     return res.status(404).json({
