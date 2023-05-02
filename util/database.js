@@ -2,8 +2,8 @@ const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(process.env.DB, "root", process.env.PASSWORD, {
   dialect: "mysql",
-  host: "localhost",
+  host: "3.216.155.206",
 });
 
 module.exports = sequelize;
-//localhost
+//3.216.155.206
