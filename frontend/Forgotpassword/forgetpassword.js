@@ -49,14 +49,14 @@ async function showPassword(e) {
   e.preventDefault();
   try {
     const decode = parseJwt(token);
-    console.log(decode);
+    // console.log(decode);
     const id = decode.id;
     password = e.target.password.value;
     cpassword = e.target.cpassword.value;
     console.log(id);
     if (cpassword === password) {
       const obj = {
-        password: password,
+        password,
       };
       const user = await axios.post(
         `http://oneinfinity.tk/user/setforgotpassword/${id}`,

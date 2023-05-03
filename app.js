@@ -63,8 +63,8 @@ app.use((req, res) => {
 // });
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  // .sync()
   .then((result) => {
     app.listen(PORT, () => {
       console.log(`listening on http://oneinfinity.tk`);
