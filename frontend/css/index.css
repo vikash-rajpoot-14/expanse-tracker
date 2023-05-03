@@ -80,11 +80,15 @@ a {
   cursor: pointer;
 }
 .head {
-  padding: 2px;
+  padding: 4px;
   text-align: center;
   background-image: linear-gradient(
     305deg,
     rgb(231, 12, 195),
     rgb(216, 51, 51)
   );
+}
+
+.head > h2 {
+  margin: 10px;
 }
