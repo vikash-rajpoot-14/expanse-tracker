@@ -106,6 +106,7 @@ exports.setforgotpassword = async (req, res) => {
     const id = req.params.id;
     const saltRounds = 10;
     const hashed = await bcrypt.hash(password, saltRounds);
+    // console.log(hashed);
     const user = await User.update(
       {
         password: hashed,
@@ -115,6 +116,7 @@ exports.setforgotpassword = async (req, res) => {
         transaction: t,
       }
     );
+    // console.log(user);
     if (user) {
       await t.commit();
       return res.redirect("http://oneinfinity.tk/Login/login.html");
