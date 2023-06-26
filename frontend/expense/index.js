@@ -13,18 +13,21 @@ listboard.style.display = "none";
 leaderbtn.style.display = "none";
 download.style.display = "none";
 let token = localStorage.getItem("token");
+
+console.log("ncjsncnsjnacns");
+
 let decode = parseJwt(token);
 // let page = 1;
 rowperPage.value = localStorage.getItem("rowperPage");
 
-showdata();
-// console.log(month());
+// showdata();
 download.addEventListener("click", async function downloadFile(e) {
   try {
     let token = localStorage.getItem("token");
+    console.log("object");
     const response = await axios({
       method: "get",
-      url: "http://oneinfinity.tk/expenses/download",
+      url: "http://localhost:3000/expenses/download",
       headers: {
         authorization: "Bearer " + `${token}`,
       },
@@ -89,8 +92,9 @@ async function showHandler(e) {
     description: e.target.description.value,
     category: e.target.category.value,
   };
+  console.log("obj",obj);
   const expense = await axios.post(
-    "http://oneinfinity.tk/expenses/add-expense",
+    "http://localhost:3000/expenses/add-expense",
     obj,
     {
       headers: {
@@ -99,6 +103,7 @@ async function showHandler(e) {
       },
     }
   );
+  console.log("expense",expense);
   if (expense.status === 204) {
     error.innerHTML = "Enter all fields";
     setTimeout(() => {
@@ -121,7 +126,7 @@ async function showdata() {
   const page = 1;
   const limit = localStorage.getItem("rowperPage");
   const expenses = await axios.get(
-    `http://oneinfinity.tk/expenses/paginate?page=${page}&limit=${limit}`,
+    `http://localhost:3000/expenses/paginate?page=${page}&limit=${limit}`,
     {
       headers: {
         "Content-type": "application/json",
@@ -135,7 +140,7 @@ async function showdata() {
 }
 
 async function deleteData(id) {
-  await axios.delete(`http://oneinfinity.tk/expenses/delete-expenses/${id}`, {
+  await axios.delete(`http://localhost:3000/expenses/delete-expenses/${id}`, {
     headers: {
       "Content-type": "application/json",
       authorization: "Bearer " + `${token}`,
@@ -146,7 +151,7 @@ async function deleteData(id) {
 
 document.getElementById("rzp-button1").onclick = async function (e) {
   const response = await axios.get(
-    "http://oneinfinity.tk/payment/purchasepremiumship",
+    "http://localhost:3000/payment/purchasepremiumship",
     {
       headers: {
         "Content-type": "application/json",
@@ -172,7 +177,7 @@ document.getElementById("rzp-button1").onclick = async function (e) {
     },
     handler: async function (response) {
       const updatedData = await axios.post(
-        "http://oneinfinity.tk/payment/updatetransactionstatus",
+        "http://localhost:3000/payment/updatetransactionstatus",
         {
           status: "SUCCESS",
           order_id: options.order_id,
@@ -195,7 +200,7 @@ document.getElementById("rzp-button1").onclick = async function (e) {
   rzp1.open();
   rzp1.on("payment.failed", async function (response) {
     await axios.post(
-      "http://oneinfinity.tk/payment/updatetransactionstatus",
+      "http://localhost:3000/payment/updatetransactionstatus",
       {
         status: "FAILED",
         order_id: response.error.metadata.order_id,
@@ -232,7 +237,7 @@ async function buttonChange() {
 
 async function leaderboardData() {
   const response = await axios.get(
-    "http://oneinfinity.tk/expenses/allExpenses",
+    "http://localhost:3000/expenses/allExpenses",
     {
       headers: {
         "Content-type": "application/json",
@@ -263,7 +268,7 @@ async function leaderboardData() {
 }
 
 async function leaderboardTableData() {
-  const response = await axios.get("http://oneinfinity.tk/expenses", {
+  const response = await axios.get("http://localhost:3000/expenses", {
     headers: {
       "Content-type": "application/json",
       authorization: "Bearer " + `${token}`,
@@ -372,7 +377,7 @@ async function leaderboardTableData() {
 
   const downloadtable = await axios({
     method: "get",
-    url: "http://oneinfinity.tk/expenses/downloadtable",
+    url: "http://localhost:3000/expenses/downloadtable",
     headers: {
       authorization: "Bearer " + `${token}`,
     },
@@ -402,7 +407,7 @@ function getExpenses(page) {
   const limit = localStorage.getItem("rowperPage");
   axios
     .get(
-      `http://oneinfinity.tk/expenses/paginate?page=${page}&limit=${limit}`,
+      `http://localhost:3000/expenses/paginate?page=${page}&limit=${limit}`,
       {
         headers: {
           "Content-type": "application/json",

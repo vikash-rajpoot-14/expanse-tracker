@@ -11,9 +11,9 @@ exports.authenticate = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
     }
     //   console.log(JSON.parse(token));
-    const decode = await jwt.verify(JSON.parse(token), process.env.JWT_SECRET);
+    const decode = jwt.verify(JSON.parse(token), process.env.JWT_SECRET);
     // console.log("decode", decode);
-    const user = await User.findByPk(decode.id);
+    const user = await User.findByPk(decode._id);
     // console.log(user);
     req.user = user;
     next();

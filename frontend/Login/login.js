@@ -7,14 +7,15 @@ async function showHandler(e) {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    const user = await axios.post("http://oneinfinity.tk/user/login", obj);
+    const user = await axios.post("http://localhost:3000/user/login", obj);
+    console.log(user);
     if (user.status === 200) {
       error.innerHTML = "login successful";
       localStorage.setItem("token", JSON.stringify(user.data.token));
-      window.location.href = "http://oneinfinity.tk/expense/index.html";
+      window.location.href = "http://localhost:3000/expense/index.html";
     }
   } catch (e) {
-    // console.log(e);
+    console.log("error", e);
     if (e.response !== undefined) {
       error.innerHTML = "Email does not exist";
     }

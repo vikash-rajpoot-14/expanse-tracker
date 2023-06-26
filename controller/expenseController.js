@@ -1,6 +1,5 @@
 const Expense = require("./../models/expense");
 const User = require("./../models/user");
-const sequelize = require("./../util/database");
 const AWS = require("aws-sdk");
 // const Downloadfile = require("./../models/downloadfile");
 
@@ -46,7 +45,7 @@ exports.FileDownload = async (req, res) => {
     const expense = await req.user.getExpenses();
     // console.log(expense);
     const StringifyExpense = JSON.stringify(expense);
-    const userId = req.user.id;
+    const userId = req.user._id;
     const filename = `Expense-${userId}-${new Date()}.txt`;
     const fileUrl = await UploadToS3(StringifyExpense, filename);
     await req.user.createDownloadfile({
@@ -78,7 +77,7 @@ exports.FileDownload = async (req, res) => {
 };
 
 exports.PostExpense = async (req, res) => {
-  const t = await sequelize.transaction();
+  console.log(req.body);
   try {
     if (
       req.body.expense.length < 1 ||
@@ -98,29 +97,21 @@ exports.PostExpense = async (req, res) => {
         expense: req.body.expense,
         description: req.body.description,
         category: req.body.category,
-        userId: req.user.id,
+        userId: req.user._id,
       },
-      { transaction: t }
     );
-    // console.log("object");
+    console.log("expense",expense);
     let totalExpense = Number(req.user.totalExpense) + Number(expense.expense);
-    // console.log(totalExpense);
-    await User.update(
-      {
-        totalExpense: totalExpense,
-      },
-      {
-        where: { id: req.user.id },
-        transaction: t,
-      }
-    );
-    await t.commit();
+    await User.findByIdAndUpdate(
+      { _id: req.user._id },{
+      totalExpense: totalExpense,
+    });
+      
     return res.status(201).json({
       status: "success",
       data: expense,
     });
   } catch (err) {
-    await t.rollback();
     return res.status(500).json({
       status: "success",
       data: err.message,
@@ -130,7 +121,7 @@ exports.PostExpense = async (req, res) => {
 
 exports.getExpenses = async (req, res) => {
   try {
-    const expenses = await Expense.findAll({ where: { Userid: req.user.id } });
+    const expenses = await Expense.find({ Userid: req.user._id });
     // await User.update(
     //   {
     //     totalExpense: [

@@ -9,17 +9,16 @@ async function showHandler(e) {
       phone: e.target.phone.value,
       password: e.target.password.value,
     };
-
-    const user = await axios.post("http://oneinfinity.tk/user/signup", obj, {
+    const user = await axios.post("http://localhost:3000/user/signup", obj, {
       headers: {
         "content-type": "application/json",
       },
     });
     if (user.status === 201) {
-      window.location.href = "http://oneinfinity.tk/Login/login.html";
+      window.location.href = "http://localhost:3000/Login/login.html";
     }
   } catch (e) {
-    // console.log(e);
+    // console.log("e",e);
     error.innerHTML = e.response.data.msg;
   }
 }

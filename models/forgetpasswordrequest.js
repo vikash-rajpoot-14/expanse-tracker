@@ -1,27 +1,24 @@
-const { DataTypes } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
-const sequelize = require("./../util/database"); // replace this with your Sequelize instance
+const uuid = require('uuid');
+const mongoose = require("mongoose");
 
-const Frequest = sequelize.define("frequest", {
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
+const frequestSchema = new mongoose.Schema({
+  id:{
+    type: String,
+    default: uuid.v4,
+    unique: true,
+    required: true
   },
   userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   isActive: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-    allowNull: false,
+    type: Boolean,
+    default: true,
+    required: true,
   },
 });
 
-Frequest.beforeCreate((request) => {
-  request.id = uuidv4(); // generate a UUID for the id field before creating a new Request
-});
+const Frequest = mongoose.model("Frequest",frequestSchema);
 
 module.exports = Frequest;
